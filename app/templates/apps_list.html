@@ -1,0 +1,66 @@
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+
+{% block content %}
+<style media="screen">
+		* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-image: url("https://images.unsplash.com/photo-1566228015668-4c45dbc4e2f5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80");
+}
+
+.container {
+	margin: 100px auto;
+	width: 300px;
+	background-color: #fff;
+	padding: 20px;
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+	border-radius: 5px;
+}
+
+h1 {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+form label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+form input {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 20px;
+	border: none;
+	border-radius: 5px;
+	background-color: #f2f2f2;
+}
+
+form input[type="submit"] {
+	background-color: #008CBA;
+	color: #fff;
+	cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+	background-color: #005f78;
+}
+
+</style>
+<div class="container">
+	<h1>Available Apps</h1>
+
+
+            <ul>
+        {% for app in apps %}
+            <li><a href="{% url 'app_detail' app.id %}">{{ app.name }}</a> - {{ app.points }} points</li>
+        {% empty %}
+            <li>No apps available.</li>
+        {% endfor %}
+   </ul>
+</div>
+{% endblock %}

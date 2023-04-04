@@ -1,0 +1,64 @@
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+
+{% block content %}
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-image: url("https://images.unsplash.com/photo-1508615039623-a25605d2b022?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
+}
+
+.container {
+	margin: 100px auto;
+	width: 400px;
+	background-color: #fff;
+	padding: 20px;
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+	border-radius: 5px;
+}
+
+h1 {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+form label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+form input {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 20px;
+	border: none;
+	border-radius: 5px;
+	background-color: #f2f2f2;
+}
+
+form input[type="submit"] {
+	background-color: #008CBA;
+	color: #fff;
+	cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+	background-color: #005f78;
+}
+
+</style>
+<div class="container">
+    <h1>{{ app.name }}</h1>
+    <p>{{ app.points }} points</p>
+    <form method="post" enctype="multipart/form-data" action="{% url 'task_submit' app.id app.name app.points %}">
+        {% csrf_token %}
+        <label for="screenshot">Screenshot:</label>
+        <input type="file" id="screenshot" name="screenshot"><br>
+        <input type="submit" value="Submit">
+    </form>
+    </div>
+{% endblock %}
